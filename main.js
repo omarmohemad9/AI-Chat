@@ -1,6 +1,6 @@
 // import md from "./markdown-it/dist/markdown-it.js";
-import md from "markdown-it";
-import TypeIt from "typeit";
+import markdown from "markdown-it";
+import TypeIt from "https://cdnjs.cloudflare.com/ajax/libs/typeit/8.8.7/index.es.min.js";
 // md().render("omar");
 let input = document.getElementById("InputData");
 let btnSubmit = document.getElementById("sub");
@@ -72,7 +72,7 @@ const FetchData = (value) => {
 
 const createResBot = (data) => {
   let resposeTxt = data.candidates[0].content.parts[0].text;
-  let md_text = md().render(resposeTxt);
+  let md_text = markdown().render(resposeTxt);
   chat_Section.innerHTML += `
           <div class="bot ">
             <img src="./img/chat-gpt.png" alt="">
