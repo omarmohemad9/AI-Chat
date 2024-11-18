@@ -10,7 +10,7 @@
     color: var(--col-txt);
     margin: 0;
     padding: 0;
-    box-sizing: content-box;
+    box-sizing: border-box;
     font-family: sans-serif;
 }
 
@@ -51,8 +51,15 @@ body {
 /* chat section  */
 
 .chat-section {
-    width: 700px;
+    max-width: 700px;
     margin: 120px auto 0;
+}
+
+/* Small devices (phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .chat-section {
+        width: 750px;
+    }
 }
 
 .chat-section .talker {
@@ -62,6 +69,7 @@ body {
     line-height: 1.8;
     font-weight: bold;
     letter-spacing: 0.5px;
+    margin-right: 20px;
 }
 
 .chat-section .talker p {
@@ -77,6 +85,8 @@ body {
 .chat-section .waiter {
     position: relative;
     margin-top: 20px;
+    margin-left: 60px;
+
     display: flex;
     align-items: flex-start;
     gap: 10px;
@@ -117,7 +127,7 @@ body {
 
 .chat-section .bot {
     position: relative;
-
+    margin-left: 60px;
     margin-top: 20px;
     display: flex;
     align-items: flex-start;
@@ -154,14 +164,30 @@ body {
     justify-content: center;
 }
 
+@media (max-width: 992px) {
+    .inp_Section {
+        padding: inherit;
+        padding-bottom: 10px;
+        padding: 10px 15px;
+    }
+}
+
 .inp_Section input {
     padding: 15px;
-    width: 500px;
+    width: 30%;
     background-color: var(--inp-col);
     border: 0;
     border-radius: 15px 0 0 15px;
     letter-spacing: 0.5px;
     font-size: 17px;
+}
+
+@media (max-width: 992px) {
+
+    /* Styles for tablets */
+    .inp_Section input {
+        width: 90%;
+    }
 }
 
 .inp_Section input:focus {

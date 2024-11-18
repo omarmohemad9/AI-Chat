@@ -19,14 +19,23 @@ new TypeIt("#element", {
   .move(null, { to: "END" })
   .go();
 
-btnSubmit.onclick = function () {
-  createChat();
-};
+// on click enter
 document.onkeydown = (e) => {
-  e.keyCode == 13 ? createChat() : "";
+  if (input.value) {
+    e.keyCode == 13 ? createChat() : "";
+  }
+};
+
+// on click on button
+btnSubmit.onclick = function () {
+  if (input.value) {
+    createChat();
+  }
 };
 
 function createChat() {
+  btnSubmit.style.pointerEvents = "none";
+
   document.getElementById("element").classList.add("remove");
   let val = input.value;
   if (val !== "") {
@@ -57,6 +66,7 @@ const FetchData = (value) => {
     .then((data) => {
       createResBot(data);
       document.querySelector(".waiter").remove();
+      btnSubmit.style.pointerEvents = "unset";
     });
 };
 
