@@ -35,7 +35,7 @@ btnSubmit.onclick = function () {
 
 function createChat() {
   btnSubmit.style.pointerEvents = "none";
-  input.style.pointerEvents = "none";
+  input.setAttribute("readonly", "");
 
   document.getElementById("element").classList.add("remove");
   let val = input.value;
@@ -52,9 +52,6 @@ function createChat() {
             </div>`;
     FetchData(val);
   }
-
-  input.value = "";
-  input.focus();
 }
 const FetchData = (value) => {
   // this fetch to post data
@@ -71,7 +68,12 @@ const FetchData = (value) => {
       document.querySelector(".waiter").remove();
       // to make button don't implement any function
       btnSubmit.style.pointerEvents = "unset";
-      input.style.pointerEvents = "unset";
+      input.removeAttribute("readonly", "");
+      input.value = "";
+      input.focus();
+    })
+    .catch((e) => {
+      console.log(e);
     });
 };
 
@@ -91,10 +93,10 @@ window.onload = () => {
   document.getElementById("title").classList.add("appear");
 };
 
-// disappear placeholder input
-input.onfocus = () => {
-  input.setAttribute("placeholder", "");
-};
-input.onblur = () => {
-  input.setAttribute("placeholder", "Enter Massage Here...");
-};
+// // disappear placeholder input
+// input.onfocus = () => {
+//   input.setAttribute("placeholder", "");
+// };
+// input.onblur = () => {
+//   input.setAttribute("placeholder", "Enter Massage Here...");
+// };
