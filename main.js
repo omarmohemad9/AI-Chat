@@ -1,7 +1,6 @@
-// import md from "./markdown-it/dist/markdown-it.js";
-import markdown from "markdown-it";
+import * as MarkdownIt from "https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js";
 import TypeIt from "https://cdnjs.cloudflare.com/ajax/libs/typeit/8.8.7/index.es.min.js";
-// md().render("omar");
+
 let input = document.getElementById("InputData");
 let btnSubmit = document.getElementById("sub");
 let chat_Section = document.getElementById("chat");
@@ -72,7 +71,8 @@ const FetchData = (value) => {
 
 const createResBot = (data) => {
   let resposeTxt = data.candidates[0].content.parts[0].text;
-  let md_text = markdown().render(resposeTxt);
+  let md = new MarkdownIt();
+  let md_text = md.render(resposeTxt);
   chat_Section.innerHTML += `
           <div class="bot ">
             <img src="./img/chat-gpt.png" alt="">
@@ -83,7 +83,6 @@ const createResBot = (data) => {
 // create transition to title
 window.onload = () => {
   document.getElementById("title").classList.add("appear");
-  console.log("s");
 };
 
 // disappear placeholder input
