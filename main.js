@@ -1,4 +1,4 @@
-import * as MarkdownIt from "https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js";
+// automatic typing
 import TypeIt from "https://cdnjs.cloudflare.com/ajax/libs/typeit/8.8.7/index.es.min.js";
 
 let input = document.getElementById("InputData");
@@ -6,6 +6,7 @@ let btnSubmit = document.getElementById("sub");
 let chat_Section = document.getElementById("chat");
 let API_KEY = "AIzaSyAOuDQ8kGL2nAn6U_ZU76SqDbh5wugMDdI";
 let API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+// Condition to make balance with requests and response
 
 // automatic write
 new TypeIt("#element", {
@@ -34,6 +35,7 @@ btnSubmit.onclick = function () {
 
 function createChat() {
   btnSubmit.style.pointerEvents = "none";
+  input.style.pointerEvents = "none";
 
   document.getElementById("element").classList.add("remove");
   let val = input.value;
@@ -50,11 +52,13 @@ function createChat() {
             </div>`;
     FetchData(val);
   }
+
   input.value = "";
   input.focus();
 }
 const FetchData = (value) => {
   // this fetch to post data
+
   fetch(API_URL, {
     method: "POST",
     body: JSON.stringify({ contents: [{ parts: [{ text: value }] }] }),
@@ -65,13 +69,15 @@ const FetchData = (value) => {
     .then((data) => {
       createResBot(data);
       document.querySelector(".waiter").remove();
+      // to make button don't implement any function
       btnSubmit.style.pointerEvents = "unset";
+      input.style.pointerEvents = "unset";
     });
 };
 
 const createResBot = (data) => {
   let resposeTxt = data.candidates[0].content.parts[0].text;
-  let md = new MarkdownIt();
+  let md = window.markdownit();
   let md_text = md.render(resposeTxt);
   chat_Section.innerHTML += `
           <div class="bot ">
